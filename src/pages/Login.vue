@@ -6,22 +6,36 @@
         @submit="onLogin"
         class="q-gutter-md"
       >
+
         <q-input
           filled
           color="deep-purple-13"
           v-model="email"
           label="Email"
-        />
+        >
+          <template v-slot:prepend>
+            <q-icon name="mail" />
+          </template>
+        </q-input>
 
         <q-input
+          v-model="password"
           filled
           color="deep-purple-13"
-          type="password"
-          v-model="password"
+          :type="isPwd ? 'password' : 'text'"
           label="Password"
-        />
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
+
         <q-card-actions align="around">
-          <q-btn flat color="deep-purple-13" type="submit" label="Register"/>
+          <q-btn flat color="deep-purple-13" type="submit" label="Register" to="/auth/register"/>
           <q-btn class="btn-login" color="deep-purple-13" type="submit" label="Login" />
         </q-card-actions>
       </q-form>
@@ -44,13 +58,18 @@ export default {
   name: 'Login',
   data () {
     return {
-      email: '',
-      password: ''
+      email: 'mario@gmail.com',
+      password: '',
+      isPwd: true
     }
   },
   methods: {
     onLogin () {
-      console.log('tentando logar')
+      if (this.email === 'mario@gmail.com' && this.password === '123') {
+        this.$router.push('/dashboard')
+      } else {
+        this.$q.notify('Email or password invalid!')
+      }
     }
   }
 }

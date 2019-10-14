@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="header">
       <q-toolbar>
         <q-toolbar-title>
           Things App
@@ -12,6 +12,11 @@
     </q-page-container>
   </q-layout>
 </template>
+
+<style lang="stylus">
+  .header
+    background-color $deep-purple-12
+</style>
 
 <script>
 export default {
