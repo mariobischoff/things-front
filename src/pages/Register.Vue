@@ -10,10 +10,10 @@
         <q-input
           filled
           color="deep-purple-13"
-          v-model="email"
+          v-model="formData.email"
           label="Email"
           lazy-rules
-          :rules="[ emailValid(email) || 'Please type a valid email' ]"
+          :rules="[ emailValid(formData.email) || 'Please type a valid email' ]"
         >
           <template v-slot:prepend>
             <q-icon name="mail" />
@@ -21,7 +21,7 @@
         </q-input>
 
         <q-input
-          v-model="password"
+          v-model="formData.password"
           filled
           color="deep-purple-13"
           :type="isPwd ? 'password' : 'text'"
@@ -37,13 +37,13 @@
         </q-input>
 
         <q-input
-          v-model="repassword"
+          v-model="formData.repassword"
           filled
           color="deep-purple-13"
           :type="isPwd1 ? 'password' : 'text'"
           label="Repassword"
           lazy-rules
-          :rules="[ repassword => repassword === password || 'Please type same password' ]"
+          :rules="[ repassword => formData.repassword === formData.password || 'Please type same password' ]"
         >
           <template v-slot:append>
             <q-icon
@@ -74,18 +74,28 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Register',
   data () {
     return {
-      email: '',
-      password: '',
-      repassword: '',
+      formData: {
+        email: '',
+        password: '',
+        repassword: ''
+      },
       isPwd: true,
       isPwd1: true
     }
   },
   methods: {
+    ...mapActions(['store', 'register']),
+    clearForm () {
+      this.formData.email = ''
+      this.formData.password = ''
+      this.formData.repassword = ''
+    },
     emailValid (email) {
       let regexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       return regexp.test(email) === true

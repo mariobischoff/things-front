@@ -10,7 +10,7 @@
         <q-input
           filled
           color="deep-purple-13"
-          v-model="email"
+          v-model="formData.email"
           label="Email"
         >
           <template v-slot:prepend>
@@ -19,7 +19,7 @@
         </q-input>
 
         <q-input
-          v-model="password"
+          v-model="formData.password"
           filled
           color="deep-purple-13"
           :type="isPwd ? 'password' : 'text'"
@@ -54,21 +54,30 @@
 </style>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Login',
   data () {
     return {
-      email: 'mario@gmail.com',
-      password: '',
+      formData: {
+        email: 'mariobischoff@gmail.com',
+        password: ''
+      },
       isPwd: true
     }
   },
+  computed: {
+    ...mapGetters(['getError', 'getToken'])
+  },
   methods: {
-    onLogin () {
-      if (this.email === 'mario@gmail.com' && this.password === '123') {
+    ...mapActions(['store', 'login']),
+    async onLogin () {
+      await this.login(this.formData)
+      if (this.getToken) {
         this.$router.push('/dashboard')
       } else {
-        this.$q.notify('Email or password invalid!')
+        this.$q.notify(this.getError)
       }
     }
   }
