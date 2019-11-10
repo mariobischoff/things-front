@@ -75,7 +75,7 @@ export default {
     async onLogin () {
       await this.login(this.formData)
       if (this.getToken) {
-        this.$router.push('/dashboard')
+        this.$router.push('/')
       } else {
         this.$q.notify(this.getError)
       }

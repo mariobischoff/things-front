@@ -74,7 +74,7 @@
 </style>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Register',
@@ -89,6 +89,9 @@ export default {
       isPwd1: true
     }
   },
+  computed: {
+    ...mapGetters(['getError'])
+  },
   methods: {
     ...mapActions(['store', 'register']),
     clearForm () {
@@ -100,8 +103,14 @@ export default {
       let regexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       return regexp.test(email) === true
     },
-    onRegister () {
-      console.log('registrando')
+    async onRegister () {
+      delete this.formData.repassword
+      await this.register(this.formData)
+      if (this.getError) {
+        this.$q.notify(this.getError)
+      } else {
+        this.$router.push('/auth/login')
+      }
     }
   }
 }

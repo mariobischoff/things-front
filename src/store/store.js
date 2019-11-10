@@ -36,6 +36,16 @@ const actions = {
     } catch (error) {
       commit('setError', error.response.data.msg)
     }
+  },
+  async register ({ commit }, payload) {
+    commit('setError', null)
+    try {
+      let response = await axios.post(process.env.API + '/user', payload)
+      console.log(response)
+      commit('setError', null)
+    } catch (error) {
+      commit('setError', error.response.data.msg)
+    }
   }
 }
 
