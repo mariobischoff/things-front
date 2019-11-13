@@ -19,10 +19,10 @@ export default {
   },
   methods: {
     clickButton () {
-      this.$socket.send('legal')
+      this.$socket.sendObj({ pump: true, cooler: false })
     }
   },
-  created () {
+  beforeMount () {
     this.$options.sockets.onmessage = (data) => console.log(data)
   }
 }
