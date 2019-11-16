@@ -13,10 +13,10 @@ const routes = [
     component: () => import('layouts/MyLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Dashboard.vue') }
-    ],
-    meta: {
-      requiresAuth: true
-    }
+    ]
+    // meta: {
+    //   requiresAuth: true
+    // }
   }
 ]
 

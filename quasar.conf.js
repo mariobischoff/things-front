@@ -67,7 +67,7 @@ module.exports = function (ctx) {
           API: JSON.stringify('http://meusite:3000')
         },
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // showProgress: false,
       // gzip: true,
       // analyze: true,
