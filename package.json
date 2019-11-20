@@ -16,7 +16,8 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "quasar": "^1.0.0",
-    "vue-native-websocket": "^2.0.13"
+    "vue-native-websocket": "^2.0.13",
+    "vue-socket.io": "^3.0.7"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",

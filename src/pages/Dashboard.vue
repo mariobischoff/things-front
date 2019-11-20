@@ -17,9 +17,14 @@ export default {
 
     }
   },
+  sockets: {
+    connect: () => {
+      console.log('socket connected')
+    }
+  },
   methods: {
     clickButton () {
-      this.$socket.sendObj({ pump: true, cooler: false })
+      this.$socket.emit('setConfig', { pump: true })
     }
   },
   beforeMount () {
