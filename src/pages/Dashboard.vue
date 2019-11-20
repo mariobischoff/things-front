@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     clickButton () {
-      this.$socket.emit('setConfig', { pump: true })
+      console.log('dasdas')
+      this.$socket.emit('setConfig', { id: 'dasdasdsa', config: { pump: true } })
     }
   },
   beforeMount () {
