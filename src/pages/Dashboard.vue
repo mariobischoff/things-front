@@ -18,23 +18,11 @@ export default {
   },
   data () {
     return {
-
-    }
-  },
-  sockets: {
-    connect: () => {
-      console.log('socket connected')
+      values: []
     }
   },
   methods: {
-    ...mapActions(['store', 'loadThings']),
-    clickButton () {
-      console.log('dasdas')
-      this.$socket.emit('setConfig', {
-        id: 'dasdasdsa',
-        config: { pump: true }
-      })
-    }
+    ...mapActions(['store', 'loadThings'])
   },
   beforeMount () {
   },

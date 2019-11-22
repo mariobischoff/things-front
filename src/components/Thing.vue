@@ -1,6 +1,6 @@
 <template>
   <div>
-    <apexchart type="line" height=350 width=500 :options="chartOptions" :series="series" />
+    <apexchart type="line" height=350 width=500 :options="chartOptions" :series="series"  />
   </div>
 </template>
 
@@ -11,16 +11,24 @@ export default {
     return {
       series: [
         {
-          name: 'High - 2013',
-          data: [28, 29, 33, 36, 32, 32, 33]
+          data: []
         },
         {
-          name: 'Low - 2013',
-          data: [12, 11, 14, 18, 17, 13, 13]
+          data: []
         }
       ],
       chartOptions: {
         chart: {
+          animations: {
+            enabled: true,
+            easing: 'linear',
+            dynamicAnimation: {
+              speed: 1000
+            }
+          },
+          stroke: {
+            curve: 'smooth'
+          },
           shadow: {
             enabled: true,
             color: '#000',
@@ -40,10 +48,6 @@ export default {
         stroke: {
           curve: 'smooth'
         },
-        title: {
-          text: 'Average High & Low Temperature',
-          align: 'left'
-        },
         grid: {
           borderColor: '#e7e7e7',
           row: {
@@ -55,17 +59,13 @@ export default {
           size: 6
         },
         xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-          title: {
-            text: 'Month'
-          }
         },
         yaxis: {
           title: {
-            text: 'Temperature'
+            text: 'Solo Humidity'
           },
-          min: 5,
-          max: 40
+          min: 200,
+          max: 500
         },
         legend: {
           position: 'top',
@@ -75,6 +75,26 @@ export default {
           offsetX: -5
         }
       }
+    }
+  },
+  methods: {
+    pushSeries (number) {
+      let serie = this.series[0].data
+      serie.push(number)
+      this.series = [{
+        data: serie
+      }]
+    }
+  },
+  sockets: {
+    connect () {
+      console.log('socket connected')
+    },
+    sendToFront (payload) {
+      this.pushSeries(payload.values.soloHumidity)
+    },
+    thingConnected (things) {
+      console.log(things)
     }
   }
 }
