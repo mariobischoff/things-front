@@ -13,7 +13,7 @@
 
     </q-header>
 
-    <q-drawer show-if-above v-model="left" side="left" bordered>
+    <q-drawer show-if-above v-model="left" :width="widthDrawer" side="left" bordered>
        <q-card>
         <q-tabs
           v-model="tab"
@@ -53,7 +53,7 @@
               </q-item-section>
 
               <q-item-section side>
-                <q-icon name="logout" color="red" @click="logout"/>
+                <q-icon name="logout" color="red" @click="exit"/>
               </q-item-section>
             </q-item>
           </q-tab-panel>
@@ -75,19 +75,19 @@ export default {
   data () {
     return {
       tab: 'thing',
+      widthDrawer: 350,
       left: false,
       right: false
     }
   },
   computed: {
     ...mapActions(['logout']),
-    ...mapGetters(['getEmail', 'getThings'])
+    ...mapGetters(['getEmail', 'getThings', 'getToken'])
   },
   methods: {
-    logout () {
-      this.logout().then(() => {
-        this.$router.push('/auth/login')
-      })
+    exit () {
+      this.$router.replace('/auth/login')
+      this.logout()
     }
   }
 }

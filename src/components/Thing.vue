@@ -1,12 +1,7 @@
 <template>
-  <q-card>
-    <q-card-section>
-     <apexchart type="line" height=350 :options="chartOptions" :series="series" />
-    </q-card-section>
-    <q-card-actions>
-      <q-btn>Ok</q-btn>
-    </q-card-actions>
-  </q-card>
+  <div>
+    <apexchart type="line" height=350 width=500 :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>

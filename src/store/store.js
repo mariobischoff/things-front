@@ -52,7 +52,7 @@ const actions = {
       return commit('setError', error)
     }
   },
-  async logout ({ commit }) {
+  logout ({ commit }) {
     SessionStorage.remove('token')
     commit('setError', null)
     commit('setToken', null)
@@ -68,7 +68,7 @@ const actions = {
     }
   },
   async loadThings ({ commit, state }) {
-    let response = await axios.get(process.env.API + '/thing', { headers: { authorization: state.token } })
+    let response = await axios.get(process.env.API + '/thing')
     commit('setThings', response.data)
   }
 }
