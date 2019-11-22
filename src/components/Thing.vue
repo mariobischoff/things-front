@@ -1,17 +1,17 @@
 <template>
-  <div id="chart">
-    <apexchart type=line height=350 :options="chartOptions" :series="series" />
-  </div>
+  <q-card>
+    <q-card-section>
+     <apexchart type="line" height=350 :options="chartOptions" :series="series" />
+    </q-card-section>
+    <q-card-actions>
+      <q-btn>Ok</q-btn>
+    </q-card-actions>
+  </q-card>
 </template>
 
 <script>
-import VueApexCharts from 'apexcharts'
-
 export default {
-  el: '#chart',
-  components: {
-    apexchart: VueApexCharts
-  },
+  name: 'Thing',
   data () {
     return {
       series: [

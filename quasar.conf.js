@@ -9,7 +9,8 @@ module.exports = function (ctx) {
     boot: [
       'axios',
       'socket',
-      'guard'
+      'guard',
+      'apex'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -49,7 +50,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'SessionStorage'
       ],
       config: {
         notify: { /* Notify defaults */ }

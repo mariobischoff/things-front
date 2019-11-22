@@ -1,7 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <thing></thing>
-    <q-btn @click="clickButton()">hello</q-btn>
+    <thing/>
   </q-page>
 </template>
 
@@ -9,8 +8,9 @@
 </style>
 
 <script>
-import ThingComponent from '../components/Thing'
-const Thing = new ThingComponent()
+import { mapActions } from 'vuex'
+import Thing from '../components/Thing'
+
 export default {
   name: 'Dashboard',
   components: {
@@ -27,6 +27,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['store', 'loadThings']),
     clickButton () {
       console.log('dasdas')
       this.$socket.emit('setConfig', {
@@ -36,9 +37,9 @@ export default {
     }
   },
   beforeMount () {
-    this.$options.sockets.onmessage = data => console.log(data)
   },
   mounted () {
+    this.loadThings()
   }
 }
 </script>
