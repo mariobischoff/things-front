@@ -1,17 +1,21 @@
 <template>
   <q-page class="flex flex-center">
-    <q-btn
-      @click="clickButton()"
-    >
-      Ok
-    </q-btn>
-    <q-list> </q-list>
+    <thing></thing>
+    <q-btn @click="clickButton()">hello</q-btn>
   </q-page>
 </template>
 
+<style lang="stylus" scoped>
+</style>
+
 <script>
+import ThingComponent from '../components/Thing'
+const Thing = new ThingComponent()
 export default {
   name: 'Dashboard',
+  components: {
+    thing: Thing
+  },
   data () {
     return {
 
@@ -25,11 +29,16 @@ export default {
   methods: {
     clickButton () {
       console.log('dasdas')
-      this.$socket.emit('setConfig', { id: 'dasdasdsa', config: { pump: true } })
+      this.$socket.emit('setConfig', {
+        id: 'dasdasdsa',
+        config: { pump: true }
+      })
     }
   },
   beforeMount () {
-    this.$options.sockets.onmessage = (data) => console.log(data)
+    this.$options.sockets.onmessage = data => console.log(data)
+  },
+  mounted () {
   }
 }
 </script>
