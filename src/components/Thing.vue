@@ -11,14 +11,23 @@ export default {
     return {
       series: [
         {
+          name: 'Temperatura',
           data: []
         },
         {
+          name: 'Umidade do Solo',
+          data: []
+        },
+        {
+          name: 'Umidade',
           data: []
         }
       ],
       chartOptions: {
         chart: {
+          zoom: {
+            enabled: true
+          },
           animations: {
             enabled: true,
             easing: 'linear',
@@ -56,42 +65,59 @@ export default {
           }
         },
         markers: {
-          size: 6
+          size: 0,
+          hover: {
+            sizeOffset: 6
+          }
         },
         xaxis: {
+          type: 'datetime',
+          min: new Date().getTime(),
+          range: 27000
         },
         yaxis: {
           title: {
             text: 'Solo Humidity'
           },
-          min: 200,
-          max: 500
+          min: 10,
+          max: 200
         },
         legend: {
-          position: 'top',
-          horizontalAlign: 'right',
-          floating: true,
-          offsetY: -25,
-          offsetX: -5
+          show: true,
+          position: 'bottom',
+          horizontalAlign: 'center',
+          floating: true
         }
       }
     }
   },
   methods: {
-    pushSeries (number) {
-      let serie = this.series[0].data
-      serie.push(number)
-      this.series = [{
-        data: serie
-      }]
-    }
   },
   sockets: {
     connect () {
       console.log('socket connected')
     },
     sendToFront (payload) {
-      this.pushSeries(payload.values.soloHumidity)
+      let now = new Date(payload.date).getTime()
+      let { temperature, soloHumidity, humidity } = payload.values
+      soloHumidity = soloHumidity / 10
+      let temperatures = this.series[0].data
+      let soloHumiditys = this.series[1].data
+      let humiditys = this.series[2].data
+      temperatures.push([now, temperature])
+      soloHumiditys.push([now, soloHumidity])
+      humiditys.push([now, humidity])
+      this.series = [
+        {
+          data: temperatures
+        },
+        {
+          data: soloHumiditys
+        },
+        {
+          data: humiditys
+        }
+      ]
     },
     thingConnected (things) {
       console.log(things)
