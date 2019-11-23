@@ -9,7 +9,8 @@ module.exports = function (ctx) {
     boot: [
       'axios',
       'socket',
-      'guard'
+      'guard',
+      'apex'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -49,7 +50,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'SessionStorage'
       ],
       config: {
         notify: { /* Notify defaults */ }
@@ -63,7 +65,7 @@ module.exports = function (ctx) {
     build: {
       env: ctx.dev
         ? {
-          API: JSON.stringify('http://localhost:3000') 
+          API: JSON.stringify('https://whispering-bastion-10151.herokuapp.com') 
         } : { 
           API: JSON.stringify('http://meusite:3000')
         },

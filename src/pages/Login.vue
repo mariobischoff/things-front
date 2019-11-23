@@ -61,8 +61,8 @@ export default {
   data () {
     return {
       formData: {
-        email: 'mariobischoff@gmail.com',
-        password: ''
+        email: 'mariobischoffneto@gmail.com',
+        password: '123123'
       },
       isPwd: true
     }

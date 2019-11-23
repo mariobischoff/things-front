@@ -1,7 +1,10 @@
-export default async ({ router, store }) => {
+import { SessionStorage } from 'quasar'
+
+export default async ({ router }) => {
   router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (store.getters['getToken']) {
+      let token = SessionStorage.getItem('token')
+      if (token === null) {
         next()
       } else {
         next('/auth/login')
