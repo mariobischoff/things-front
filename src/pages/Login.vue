@@ -11,7 +11,7 @@
           filled
           color="primary"
           v-model="formData.email"
-          label="Email"
+          label="E-mail"
         >
           <template v-slot:prepend>
             <q-icon name="mail" />
@@ -23,7 +23,7 @@
           filled
           color="primary"
           :type="isPwd ? 'password' : 'text'"
-          label="Password"
+          label="Senha"
         >
           <template v-slot:append>
             <q-icon
@@ -35,8 +35,8 @@
         </q-input>
 
         <q-card-actions align="around">
-          <q-btn flat color="secondary" type="submit" label="Register" to="/auth/register"/>
-          <q-btn class="btn-login" color="secondary" type="submit" label="Login" />
+          <q-btn flat color="secondary" type="submit" label="Cadastrar" to="/auth/register"/>
+          <q-btn class="btn-login" color="secondary" type="submit" label="Entrar" />
         </q-card-actions>
       </q-form>
     </q-card>

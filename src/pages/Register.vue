@@ -11,9 +11,9 @@
           filled
           color="primary"
           v-model="formData.email"
-          label="Email"
+          label="E-mail"
           lazy-rules
-          :rules="[ emailValid(formData.email) || 'Please type a valid email' ]"
+          :rules="[ emailValid(formData.email) || 'Por favor entre com um e-mail válido' ]"
         >
           <template v-slot:prepend>
             <q-icon name="mail" />
@@ -25,7 +25,7 @@
           filled
           color="primary"
           :type="isPwd ? 'password' : 'text'"
-          label="Password"
+          label="Senha"
         >
           <template v-slot:append>
             <q-icon
@@ -41,9 +41,9 @@
           filled
           color="primary"
           :type="isPwd1 ? 'password' : 'text'"
-          label="Repassword"
+          label="Confirmação da senha"
           lazy-rules
-          :rules="[ repassword => formData.repassword === formData.password || 'Please type same password' ]"
+          :rules="[ repassword => formData.repassword === formData.password || 'Digite a mesma senha' ]"
         >
           <template v-slot:append>
             <q-icon
@@ -55,8 +55,8 @@
         </q-input>
 
         <q-card-actions align="around">
-          <q-btn flat color="secondary" type="submit" label="Back" to="/auth/login"/>
-          <q-btn class="btn-login" color="secondary" type="submit" label="Register" />
+          <q-btn flat color="secondary" type="submit" label="Voltar" to="/auth/login"/>
+          <q-btn class="btn-login" color="secondary" type="submit" label="Registrar" />
         </q-card-actions>
       </q-form>
     </q-card>
