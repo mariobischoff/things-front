@@ -65,7 +65,7 @@ module.exports = function (ctx) {
     build: {
       env: ctx.dev
         ? {
-          API: JSON.stringify('http://localhost:3000') 
+          API: JSON.stringify('https://whispering-bastion-10151.herokuapp.com') 
         } : { 
           API: JSON.stringify('http://meusite:3000')
         },

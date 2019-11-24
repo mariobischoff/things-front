@@ -8,7 +8,7 @@
 </style>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Thing from '../components/Thing'
 
 export default {
@@ -28,18 +28,22 @@ export default {
   },
   methods: {
     ...mapActions(['store', 'loadThings']),
+    ...mapGetters(['getError']),
     clickButton () {
       console.log('dasdas')
       this.$socket.emit('setConfig', {
         id: 'dasdasdsa',
         config: { pump: true }
       })
+    },
+    load () {
+      this.loadThings()
     }
   },
   beforeMount () {
   },
   mounted () {
-    this.loadThings()
+    this.load()
   }
 }
 </script>

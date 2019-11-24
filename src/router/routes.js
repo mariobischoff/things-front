@@ -1,14 +1,6 @@
 
 const routes = [
   {
-    path: '/auth',
-    component: () => import('layouts/Auth.vue'),
-    children: [
-      { path: 'login', component: () => import('pages/Login.vue') },
-      { path: 'register', component: () => import('pages/Register.vue') }
-    ]
-  },
-  {
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     children: [
@@ -17,6 +9,14 @@ const routes = [
     // meta: {
     //   requiresAuth: true
     // }
+  },
+  {
+    path: '/auth',
+    component: () => import('layouts/Auth.vue'),
+    children: [
+      { path: 'login', component: () => import('pages/Login.vue') },
+      { path: 'register', component: () => import('pages/Register.vue') }
+    ]
   }
 ]
 

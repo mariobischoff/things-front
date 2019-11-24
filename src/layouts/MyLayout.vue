@@ -53,7 +53,7 @@
               </q-item-section>
 
               <q-item-section side>
-                <q-icon name="logout" color="red" @click="logout"/>
+                <q-icon name="logout" color="red"/>
               </q-item-section>
             </q-item>
           </q-tab-panel>
@@ -84,7 +84,7 @@ export default {
     ...mapGetters(['getEmail', 'getThings'])
   },
   methods: {
-    logout () {
+    exit () {
       this.logout().then(() => {
         this.$router.push('/auth/login')
       })

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { axiosInstance } from 'boot/axios'
 import { SessionStorage } from 'quasar'
 
 const state = {
@@ -44,12 +44,12 @@ const actions = {
   async login ({ commit }, credentials) {
     commit('setError', null)
     try {
-      let response = await axios.post(process.env.API + '/auth', credentials)
+      let response = await axiosInstance.post('/auth', credentials)
+      SessionStorage.set('token', response.data.token)
       commit('setToken', response.data.token)
       commit('setEmail', response.data.email)
-      SessionStorage.set('token', response.data.token)
     } catch (error) {
-      return commit('setError', error)
+      return commit('setError', error.response.data.msg)
     }
   },
   async logout ({ commit }) {
@@ -61,15 +61,19 @@ const actions = {
   async register ({ commit }, payload) {
     commit('setError', null)
     try {
-      await axios.post(process.env.API + '/user', payload)
+      await axiosInstance.post('/user', payload)
       commit('setError', null)
     } catch (error) {
       commit('setError', error.response.data.msg)
     }
   },
   async loadThings ({ commit, state }) {
-    let response = await axios.get(process.env.API + '/thing', { headers: { authorization: state.token } })
-    commit('setThings', response.data)
+    try {
+      let response = await axiosInstance.get('/thing', { headers: { authorization: state.token } })
+      commit('setThings', response.data)
+    } catch (error) {
+      commit('setError', error.response.data.msg)
+    }
   }
 }
 
