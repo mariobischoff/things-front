@@ -66,6 +66,7 @@ export default {
       // }
     },
     onReset () {
+      this.auto = true
       this.cooler = false
       this.pump = false
       this.$q.notify({
