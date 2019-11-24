@@ -9,7 +9,7 @@
 
         <q-input
           filled
-          color="deep-purple-13"
+          color="primary"
           v-model="formData.email"
           label="Email"
           lazy-rules
@@ -23,7 +23,7 @@
         <q-input
           v-model="formData.password"
           filled
-          color="deep-purple-13"
+          color="primary"
           :type="isPwd ? 'password' : 'text'"
           label="Password"
         >
@@ -39,7 +39,7 @@
         <q-input
           v-model="formData.repassword"
           filled
-          color="deep-purple-13"
+          color="primary"
           :type="isPwd1 ? 'password' : 'text'"
           label="Repassword"
           lazy-rules
@@ -55,8 +55,8 @@
         </q-input>
 
         <q-card-actions align="around">
-          <q-btn flat color="deep-purple-13" type="submit" label="Back" to="/auth/login"/>
-          <q-btn class="btn-login" color="deep-purple-13" type="submit" label="Register" />
+          <q-btn flat color="secondary" type="submit" label="Back" to="/auth/login"/>
+          <q-btn class="btn-login" color="secondary" type="submit" label="Register" />
         </q-card-actions>
       </q-form>
     </q-card>

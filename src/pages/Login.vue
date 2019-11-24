@@ -9,7 +9,7 @@
 
         <q-input
           filled
-          color="deep-purple-13"
+          color="primary"
           v-model="formData.email"
           label="Email"
         >
@@ -21,7 +21,7 @@
         <q-input
           v-model="formData.password"
           filled
-          color="deep-purple-13"
+          color="primary"
           :type="isPwd ? 'password' : 'text'"
           label="Password"
         >
@@ -35,8 +35,8 @@
         </q-input>
 
         <q-card-actions align="around">
-          <q-btn flat color="deep-purple-13" type="submit" label="Register" to="/auth/register"/>
-          <q-btn class="btn-login" color="deep-purple-13" type="submit" label="Login" />
+          <q-btn flat color="secondary" type="submit" label="Register" to="/auth/register"/>
+          <q-btn class="btn-login" color="secondary" type="submit" label="Login" />
         </q-card-actions>
       </q-form>
     </q-card>

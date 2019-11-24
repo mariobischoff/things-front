@@ -10,7 +10,7 @@
           <q-btn color="white" text-color="primary" push @click="exit">
             <div class="row items-center no-wrap">
               <q-icon left name="logout" />
-                Logout
+                Sair
             </div>
           </q-btn>
         </q-item-section>
@@ -27,8 +27,8 @@
           indicator-color="primary"
           align="justify"
         >
-          <q-tab name="thing" label="Thing" />
-          <q-tab name="profile" label="Profile" />
+          <q-tab name="thing" label="Dispositivos" />
+          <q-tab name="profile" label="Perfil" />
         </q-tabs>
 
         <q-separator />

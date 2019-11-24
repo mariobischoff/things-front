@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="max-width: 100%">
-    <q-toggle v-model="auto" label="Automatic" animated />
+    <q-toggle v-model="auto" label="Automático" />
     <q-form
       @submit="onSubmit"
       @reset="onReset"
@@ -18,7 +18,7 @@
 
         <q-item tag="label" v-ripple :disable=auto>
           <q-item-section>
-            <q-item-label>Pump</q-item-label>
+            <q-item-label>Bomba d'água</q-item-label>
           </q-item-section>
           <q-item-section avatar>
             <q-toggle color="primary" v-model="pump" />
@@ -27,8 +27,8 @@
       </q-list>
 
       <div>
-        <q-btn label="Submit" type="submit" color="primary" :disable=auto />
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" :disable=auto />
+        <q-btn label="Enviar" type="submit" color="primary" :disable=auto />
+        <q-btn label="Restaurar" type="reset" color="primary" flat class="q-ml-sm" :disable=auto />
       </div>
     </q-form>
 
@@ -48,20 +48,20 @@ export default {
 
   methods: {
     onSubmit () {
-      if (this.cooler !== true || this.pump !== true) {
+      if (this.cooler !== true && this.pump !== true) {
         this.$q.notify({
           color: 'red-5',
           textColor: 'white',
           icon: 'warning',
           position: 'top',
-          message: 'Unchanged Commands'
+          message: 'Comandos não alterados'
         })
       } else {
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
-          message: 'Data Sent'
+          message: 'Comandos enviados'
         })
       }
     },
@@ -73,7 +73,7 @@ export default {
         textColor: 'white',
         icon: 'warning',
         position: 'top',
-        message: 'Configuration Restarted'
+        message: 'Configuração restaurada'
       })
     }
   }

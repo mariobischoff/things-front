@@ -77,7 +77,7 @@ export default {
         },
         yaxis: {
           title: {
-            text: 'Solo Humidity'
+            text: 'Nível'
           },
           min: 10,
           max: 200
