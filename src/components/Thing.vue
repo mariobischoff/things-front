@@ -1,12 +1,7 @@
 <template>
-  <q-card>
-    <q-card-section>
-     <apexchart type="line" height=350 :options="chartOptions" :series="series" />
-    </q-card-section>
-    <q-card-actions>
-      <q-btn>Ok</q-btn>
-    </q-card-actions>
-  </q-card>
+  <div>
+    <apexchart type="line" height=350 width=500 :options="chartOptions" :series="series"  />
+  </div>
 </template>
 
 <script>
@@ -16,16 +11,33 @@ export default {
     return {
       series: [
         {
-          name: 'High - 2013',
-          data: [28, 29, 33, 36, 32, 32, 33]
+          name: 'Temperatura',
+          data: []
         },
         {
-          name: 'Low - 2013',
-          data: [12, 11, 14, 18, 17, 13, 13]
+          name: 'Umidade do Solo',
+          data: []
+        },
+        {
+          name: 'Umidade',
+          data: []
         }
       ],
       chartOptions: {
         chart: {
+          zoom: {
+            enabled: true
+          },
+          animations: {
+            enabled: true,
+            easing: 'linear',
+            dynamicAnimation: {
+              speed: 1000
+            }
+          },
+          stroke: {
+            curve: 'smooth'
+          },
           shadow: {
             enabled: true,
             color: '#000',
@@ -45,10 +57,6 @@ export default {
         stroke: {
           curve: 'smooth'
         },
-        title: {
-          text: 'Average High & Low Temperature',
-          align: 'left'
-        },
         grid: {
           borderColor: '#e7e7e7',
           row: {
@@ -57,29 +65,62 @@ export default {
           }
         },
         markers: {
-          size: 6
+          size: 0,
+          hover: {
+            sizeOffset: 6
+          }
         },
         xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-          title: {
-            text: 'Month'
-          }
+          type: 'datetime',
+          min: new Date().getTime(),
+          range: 27000
         },
         yaxis: {
           title: {
-            text: 'Temperature'
+            text: 'Nível'
           },
-          min: 5,
-          max: 40
+          min: 10,
+          max: 200
         },
         legend: {
-          position: 'top',
-          horizontalAlign: 'right',
-          floating: true,
-          offsetY: -25,
-          offsetX: -5
+          show: true,
+          position: 'bottom',
+          horizontalAlign: 'center',
+          floating: true
         }
       }
+    }
+  },
+  methods: {
+  },
+  sockets: {
+    connect () {
+      console.log('socket connected')
+    },
+    sendToFront (payload) {
+      let now = new Date(payload.date).getTime()
+      let { temperature, soloHumidity, humidity } = payload.values
+      soloHumidity = soloHumidity / 10
+      let temperatures = this.series[0].data
+      let soloHumiditys = this.series[1].data
+      let humiditys = this.series[2].data
+      temperatures.push([now, temperature])
+      soloHumiditys.push([now, soloHumidity])
+      humiditys.push([now, humidity])
+      this.series = [
+        {
+          data: temperatures
+        },
+        {
+          data: soloHumiditys
+        },
+        {
+          data: humiditys
+        }
+      ]
+    },
+    thingConnected (things) {
+      console.log(things)
     }
   }
 }

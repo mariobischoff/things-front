@@ -9,9 +9,9 @@
 
         <q-input
           filled
-          color="deep-purple-13"
+          color="primary"
           v-model="formData.email"
-          label="Email"
+          label="E-mail"
         >
           <template v-slot:prepend>
             <q-icon name="mail" />
@@ -21,9 +21,9 @@
         <q-input
           v-model="formData.password"
           filled
-          color="deep-purple-13"
+          color="primary"
           :type="isPwd ? 'password' : 'text'"
-          label="Password"
+          label="Senha"
         >
           <template v-slot:append>
             <q-icon
@@ -35,8 +35,8 @@
         </q-input>
 
         <q-card-actions align="around">
-          <q-btn flat color="deep-purple-13" type="submit" label="Register" to="/auth/register"/>
-          <q-btn class="btn-login" color="deep-purple-13" type="submit" label="Login" />
+          <q-btn flat color="secondary" type="submit" label="Cadastrar" to="/auth/register"/>
+          <q-btn class="btn-login" color="secondary" type="submit" label="Entrar" />
         </q-card-actions>
       </q-form>
     </q-card>
@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       formData: {
-        email: 'mariobischoff@gmail.com',
+        email: 'mariobischoffneto@gmail.com',
         password: '123123'
       },
       isPwd: true

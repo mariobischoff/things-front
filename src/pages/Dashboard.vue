@@ -1,6 +1,10 @@
 <template>
   <q-page class="flex flex-center">
-    <thing/>
+    <div class="content">
+      <thing />
+      <q-separator />
+      <control />
+    </div>
   </q-page>
 </template>
 
@@ -10,20 +14,17 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Thing from '../components/Thing'
+import Control from '../components/Control'
 
 export default {
   name: 'Dashboard',
   components: {
-    thing: Thing
+    thing: Thing,
+    control: Control
   },
   data () {
     return {
-
-    }
-  },
-  sockets: {
-    connect: () => {
-      console.log('socket connected')
+      values: []
     }
   },
   methods: {

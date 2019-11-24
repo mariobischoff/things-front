@@ -52,7 +52,7 @@ const actions = {
       return commit('setError', error.response.data.msg)
     }
   },
-  async logout ({ commit }) {
+  logout ({ commit }) {
     SessionStorage.remove('token')
     commit('setError', null)
     commit('setToken', null)

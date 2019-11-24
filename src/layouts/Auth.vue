@@ -8,7 +8,7 @@
 
 <style lang="stylus">
   .container
-    background-color $deep-purple-13
+    background-color $primary
 </style>
 
 <script>
