@@ -56,7 +56,10 @@ export default {
       //     message: 'Comandos não alterados'
       //   })
       // } else {
-      this.$socket.emit('setConfig', { automatic: this.auto, cooler: this.cooler, pump: this.pump })
+      let automatic = this.auto ? 1 : 0
+      let cooler = this.cooler ? 1 : 0
+      let pump = this.pump ? 1 : 0
+      this.$socket.emit('setConfig', { automatic, cooler, pump })
       this.$q.notify({
         color: 'green-4',
         textColor: 'white',
