@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
-        <q-toolbar-title>Things App</q-toolbar-title>
+        <q-toolbar-title>Things App </q-toolbar-title>
 
         <q-item-section side>
           <q-btn color="white" text-color="primary" push @click="exit">
@@ -67,8 +67,8 @@
 
             <q-separator />
             <div class="btn">
-              <q-btn label="Register Device" icon-right="device_hub" outline color="primary" />
-              <q-btn label="Settings Profile" icon-right="build" outline color="primary" />
+              <q-btn label="Register Device" icon-right="device_hub" outline color="primary" @click="registerDevice =true" />
+              <q-btn label="Settings Profile" icon-right="build" outline color="primary" @click="settingsProfile =true" />
             </div>
           </q-tab-panel>
         </q-tab-panels>
@@ -77,6 +77,12 @@
 
     <q-page-container>
       <router-view />
+      <q-dialog v-model="registerDevice" persistent>
+        <register-device />
+      </q-dialog>
+      <q-dialog v-model="settingsProfile" persistent>
+        <settings-profile />
+      </q-dialog>
     </q-page-container>
 
   </q-layout>
@@ -97,14 +103,22 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import RegisterDevice from '../components/RegisterDevice'
+import SettingsProfile from '../components/SettingsProfile'
 
 export default {
+  components: {
+    RegisterDevice,
+    SettingsProfile
+  },
   data () {
     return {
       tab: 'thing',
       widthDrawer: 350,
       left: false,
-      link: ''
+      link: '',
+      registerDevice: false,
+      settingsProfile: false
     }
   },
   computed: {
