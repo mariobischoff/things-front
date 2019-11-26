@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="max-width: 100%">
-    <q-toggle v-model="auto" label="Automático"/>
+    <q-toggle v-model="auto" label="Automático" @input="onSubmit()"/>
     <q-form
       @submit="onSubmit"
       @reset="onReset"
