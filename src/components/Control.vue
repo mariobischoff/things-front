@@ -12,7 +12,7 @@
             <q-item-label>Cooler</q-item-label>
           </q-item-section>
           <q-item-section avatar>
-            <q-toggle color="primary" v-model="cooler" />
+            <q-toggle color="primary" v-model="cooler" @input="onSubmit()" />
           </q-item-section>
         </q-item>
 
@@ -21,14 +21,13 @@
             <q-item-label>Bomba d'água</q-item-label>
           </q-item-section>
           <q-item-section avatar>
-            <q-toggle color="primary" v-model="pump" />
+            <q-toggle color="primary" v-model="pump" @input="onSubmit()"/>
           </q-item-section>
         </q-item>
       </q-list>
 
       <div>
-        <q-btn label="Enviar" type="submit" color="primary"/>
-        <q-btn label="Restaurar" type="reset" color="primary" flat class="q-ml-sm"/>
+        <q-btn label="Restaurar" type="reset" color="primary" class="q-ml-sm"/>
       </div>
     </q-form>
 
@@ -56,6 +55,10 @@ export default {
       //     message: 'Comandos não alterados'
       //   })
       // } else {
+      // TESTE DE INPUTS
+      // console.log(this.auto)
+      // console.log(this.cooler)
+      // console.log(this.pump)
       let automatic = this.auto ? 1 : 0
       let cooler = this.cooler ? 1 : 0
       let pump = this.pump ? 1 : 0
