@@ -56,6 +56,9 @@
           </q-tab-panel>
 
           <q-tab-panel name="profile">
+            <div>
+              <q-badge color="primary">v1.0.0</q-badge>
+            </div>
             <div class="q-ma-md perfil">
                 <q-avatar class="q-ma-md" size="600%" color="primary" text-color="white">
                   {{ getEmail[0] }}
@@ -127,9 +130,9 @@ export default {
   },
   methods: {
     exit () {
-      this.logout().then(() => {
-        this.$router.push('/auth/login')
-      })
+      // this.logout().then(() => {
+      this.$router.push('/auth/login')
+      // })
     }
   }
 }

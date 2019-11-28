@@ -4,6 +4,7 @@ const routes = [
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     children: [
+      // { path: '', component: () => import('pages/Welcome.vue') }
       { path: '', component: () => import('pages/Dashboard.vue') }
     ]
     // meta: {

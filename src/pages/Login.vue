@@ -1,7 +1,11 @@
 <template>
   <q-page class="flex flex-center">
     <q-card class="q-pa-md q-ma-md card-login shadow-4" style="max-width: 500px">
-      <h4 class="text-center">Login</h4>
+      <div class="q-pa-md q-ma-md column justify-center items-center ">
+        <q-icon name="img:statics/icons/planet-earth.png" size="100px"/>
+        <p class="text-weight-medium text-right">Controle seus dispositivos IOT de forma <b>eficiente</b> e <b>prática</b>
+        </p>
+      </div>
       <q-form
         @submit="onLogin"
         class="q-gutter-md"
@@ -47,8 +51,8 @@
   .card-login
     width 350px
     background-color $deep-purple-1
-    h4
-      color $grey-7
+    p
+      color $primary
     .btn-login
       width 150px
 </style>
