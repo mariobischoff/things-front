@@ -3,7 +3,8 @@
     <q-toggle v-model="auto" label="Automático"
       @input="() => {
         cooler = false
-        pump = false}"/>
+        pump = false
+        onSubmit()}"/>
     <q-form
       @submit="onSubmit"
       @reset="onReset"
